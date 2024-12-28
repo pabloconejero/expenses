@@ -59,6 +59,7 @@ module.exports = (sequelize) => {
   User.associate = (models) => {
     // A User has many Records
     User.hasMany(models.Record, {
+      as: 'expenses',
       foreignKey: {
         name: 'userId',
         allowNull: false,
