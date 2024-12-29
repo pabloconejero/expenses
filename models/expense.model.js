@@ -1,11 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Record = sequelize.define('Record', {
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+  const Expense = sequelize.define('Record', {
     amount: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
@@ -20,9 +16,9 @@ module.exports = (sequelize) => {
   });
 
   // Define relationship (Many-to-One with User)
-  Record.associate = (models) => {
+  Expense.associate = (models) => {
     // A Record belongs to a User
-    Record.belongsTo(models.User, {
+    Expense.belongsTo(models.User, {
       foreignKey: {
         name: 'userId',
         allowNull: false,
@@ -30,6 +26,6 @@ module.exports = (sequelize) => {
       onDelete: 'CASCADE', // Delete records when the user is deleted
     });
   };
-
-  return Record;
+  
+  return Expense;
 };
